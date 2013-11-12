@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  
+  <h2><%= @user.name.titleize %></h2>
+  <h3>Friends</h3> 
+  <% @user.friends.each do |friend| %>
+   <ul>
+		   <%= friend.name %>
+		   <%= link_to 'remove Friend' , friendship_path(friend), :method => :delete %>
+   </ul>
+  <% end %></br>
+
+
+  <% User.all.each do |user| %>
+    <%= user.name %>
+    <%= link_to 'Add Friend' , friendships_path(:friend_id => user, :user_id => @user.id) , :method => :post %><br/>
+  <% end %>
+</p>
+<h3>Friended By</h3>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
